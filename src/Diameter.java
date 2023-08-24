@@ -60,6 +60,33 @@ public class Diameter {
                 0x40,0x00,0x00,0x0c,
                 0x00,0x00,0x00,0x05
         };
+//        Version  this is index 1
+        int version = 0;
+        version |= (bytes[0] &0xff);
+        System.out.println("Version -->" + version);
+
+//        Message Length  => index 1,2,3
+        int messageLength = 0;
+        messageLength |=(bytes[1]&0xff)<<16;
+        messageLength |=(bytes[2]&0xff)<<8;
+        messageLength |= (bytes[3]&0xff);
+        System.out.println("Message Length --> "+ messageLength);
+
+//        Command Flags => index 4
+        boolean request = ((bytes[4]&0xff) & 0b10000000) >0;
+        System.out.println("Request -->" + request);
+
+        boolean proxible = ((bytes[4]&0xff) &0b01000000) >0;
+        System.out.println("Proxible --> "+ proxible);
+
+        boolean error= ((bytes[4] &0xff) &0b00100000) >0;
+        System.out.println("Error -->"+error);
+
+        boolean transmitted= ((bytes[4] &0xff) &0b00010000) >0;
+        System.out.println("Transmitted -->"+transmitted);
+
+        boolean reserved= ((bytes[4] &0xff) &0b00001111) >0;
+        System.out.println("reserved-->"+reserved);
 
     }
 }
