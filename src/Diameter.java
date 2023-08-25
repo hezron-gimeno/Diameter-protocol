@@ -88,5 +88,20 @@ public class Diameter {
         boolean reserved= ((bytes[4] &0xff) &0b00001111) >0;
         System.out.println("reserved-->"+reserved);
 
+//        Command Codes => indexes 5,6,7
+        int commandCode = 0;
+        commandCode |= (bytes[5] &0xff)<<16;
+        commandCode |= (bytes[6] &0xff)<<8;
+        commandCode |= (bytes[7] &0xff);
+        System.out.println("Command Code -->" + commandCode);
+
+//        Application Id indexes 8,9,10,11
+         int applicationId= 0;
+         applicationId |=(bytes[8]&0xff)<<24;
+         applicationId |=(bytes[9] &0xff)<<16;
+         applicationId |=(bytes[10] &0xff)<<8;
+         applicationId |=(bytes[11] &0xff);
+        System.out.println("Application Id --> " + applicationId);
+
     }
 }
