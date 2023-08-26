@@ -103,5 +103,31 @@ public class Diameter {
          applicationId |=(bytes[11] &0xff);
         System.out.println("Application Id --> " + applicationId);
 
+//        Hope by hope indentifier
+//        indexes 12,13,14,15
+        int hopeIdentifier = 0;
+        hopeIdentifier |=(bytes[12]&0xff)<<24;
+        hopeIdentifier |=(bytes[13] &0xff)<<16;
+        hopeIdentifier |= (bytes[14] &0xff)<<8;
+        hopeIdentifier |=(bytes[15] &0xff);
+        System.out.println("Hope-by-hope identifier --> "+ hopeIdentifier);
+
+//        end to end Indentifier indexes 16,17,18,19
+        int endIdentifier = 0;
+        endIdentifier |= (bytes[16] &0xff)<<24;
+        endIdentifier |= (bytes[17] &0xff)<<16;
+        endIdentifier |= (bytes[18] &0xff)<<8;
+        endIdentifier |= (bytes[19] &0xff);
+        System.out.println("end-to-end identifier -->" + endIdentifier);
+
+//        AVP header indexes 20,21,22,23
+        int avpCode = 0;
+        avpCode |= (bytes[20] &0xff)<<24;
+        avpCode |= (bytes[21] &0xff)<<16;
+        avpCode |=(bytes[22] &0xff)<<8;
+        avpCode |=(bytes[23] &0xff);
+        System.out.println("AVP code --> " + avpCode);
+
+
     }
 }
