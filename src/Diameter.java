@@ -128,6 +128,38 @@ public class Diameter {
         avpCode |=(bytes[23] &0xff);
         System.out.println("AVP code --> " + avpCode);
 
+        //flags
+        //index 24
+        boolean vendor =((bytes[24] &0xff) &0b10000000) >0;
+        System.out.println("Vendor-Specific-->"+ vendor);
+
+        boolean mandatory =((bytes[24] &0xff) &0b01000000) >0;
+        System.out.println("mandatory-->"+ mandatory);
+
+        boolean p =((bytes[24] &0xff) &0b00100000) >0;
+        System.out.println("protected-->"+ p);
+
+        boolean reserve  =((bytes[24] &0xff) &0b00010000) >0;
+        System.out.println("Vendor-Specific-->"+ reserve);
+
+        //Avp Length
+        //indexes 25,26,27
+        int avpLength =0;
+        avpLength |= (bytes[25] &0xff)<<16;
+        avpLength |= (bytes[26] &0xff)<<8;
+        avpLength |= (bytes [27] &0xff);
+        System.out.println("AVP-Length -->"+avpLength);
+
+        //vendor ID --indexes 28,29,30,31
+        int vendorId =0;
+        vendorId |= (bytes[28] &0xff) <<24;
+        vendorId |= (bytes[29] &0xff) <<16;
+        vendorId |= (bytes[30] &0xff) <<8;
+        vendorId |= (bytes[31] &0xff);
+        System.out.println("Vendor ID -->" +vendorId);
+
+
+
 
     }
 }
